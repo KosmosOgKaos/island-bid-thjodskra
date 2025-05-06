@@ -3,7 +3,7 @@
 export default $config({
   app(input) {
     return {
-      name: 'island-bid-starter-backend',
+      name: 'island-bid-registry',
       removal: input?.stage === 'production' ? 'retain' : 'remove',
       protect: ['production'].includes(input?.stage),
       home: 'aws',
