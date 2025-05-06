@@ -1,0 +1,20 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile-backend
+    environment:
+      DATABASE_URL: 'postgresql://test_user:test_password@postgresql:5432/test_database'
+    ports:
+      - 3000:3000
+
+  postgresql:
+    build:
+      context: .
+      dockerfile: Dockerfile-database
+    environment:
+      POSTGRES_PASSWORD: test_password
+      POSTGRES_USER: test_user
+      POSTGRES_DB: test_database
+    ports:
+      - 5432:5432

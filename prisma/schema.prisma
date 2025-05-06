@@ -1,0 +1,116 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Currency {
+  ISK
+}
+
+enum SubmissionStatus {
+  Imported
+  Submitted
+  Finished
+}
+
+enum IncomeType {
+  Wages
+  Benefits
+  Other
+}
+
+model Person {
+  id          Int          @id @default(autoincrement())
+  name        String
+  kennitala   String       @unique
+  address     String
+  email       String
+  telephone   String?
+  submissions Submission[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Submission {
+  id         Int              @id @default(autoincrement())
+  year       Int
+  status     SubmissionStatus
+  index      Int
+  person     Person           @relation(fields: [personId], references: [id])
+  personId   Int
+  incomes    Income[]
+  properties Property[]
+  debts      Debt[]
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+
+  @@unique([personId, year, index])
+}
+
+model Income {
+  id           Int        @id @default(autoincrement())
+  type         IncomeType
+  payer        String?
+  amount       Float
+  currency     Currency   @default(ISK)
+  explanation  String?
+  submission   Submission @relation(fields: [submissionId], references: [id])
+  submissionId Int
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+enum PropertyType {
+  DomesticProperty
+  Vehicle
+}
+
+model Property {
+  id           Int          @id @default(autoincrement())
+  type         PropertyType
+  valueName    String
+  value        Float
+  currency     Currency     @default(ISK)
+  properties   Json?
+  submission   Submission   @relation(fields: [submissionId], references: [id])
+  submissionId Int
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+enum DebtType {
+  OwnDomicile
+  Other
+}
+
+model Debt {
+  id                   Int        @id @default(autoincrement())
+  description          String?
+  type                 DebtType
+  currency             Currency   @default(ISK)
+  creditor             String?
+  creditorKennitala    String?
+  loanNumber           String?
+  loanStartDate        DateTime?
+  loanDurationYears    Int?
+  yearPaymentTotal     Float?
+  nominalPaymentTotal  Float?
+  interestPaymentTotal Float
+  remaining            Float
+  properties           Json?
+  submission           Submission @relation(fields: [submissionId], references: [id])
+  submissionId         Int
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
+}

@@ -1,0 +1,65 @@
+Db name Skattur
+
+
+Table name: Person
+Name string
+Kennitala string (length 10)
+Address string 
+Email string 
+Telephone 
+
+
+SubmissionStatus enum 
+Imported = 0 //initial creation, data imported from sources  
+Submitted = 1 //user has submitted
+Finished = 2 //user has confirmed and completed the submission 
+
+
+/*
+For every person, the year's tax return is created using data from Skatturinn. 
+This submission has the index 0 and the type Imported. 
+When the user submits data to the form, a new Submission is created with index n+1 and submissionStatus Submitted
+When the user confirms that all information is complete, the submission receives the status Finished. 
+*/
+Table name: Submission
+ID number
+Year number
+Status SubmissionType 
+Index: number //start at 0; each submission by the user increments by one. The latest submission is returned to the frontend when their form is populated 
+
+
+IncomeType enum
+Wages
+Benefits 
+Other
+
+/*
+This represents a single income entry in a submission.
+*/
+Table  name: Income 
+SubmissionID //foreign key to Submission
+Type IncomeType
+Payer string //where the payment came from 
+Amount number 
+Explanation string
+
+
+Table name: Property 
+SubmissionID //Foreign key to Submission 
+Value number 
+Properties jsonb //Arbitrary properties; e.g Car number, property address, etc 
+
+
+Table name: Debt 
+SubmissionID //Foreign key to Submission 
+Amount number 
+Debtor string 
+DebtorKennitala string 
+LoanNumber string 
+LoanStartDate date
+LoanDurationYears number 
+YearPaymentTotal number 
+NominalPaymentTotal number 
+InterestPaymentTotal number 
+Remaining number 
+Properties jsonb //Arbitrary properties; e.g location of property for mortgage

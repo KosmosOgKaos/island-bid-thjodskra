@@ -1,0 +1,48 @@
+name: Deploy with SST
+
+# Note to developers using this for reference:
+# This is a temporary project with short lived access and setup.
+# For any production usage of this job, please use a proper token
+# based workflow for OIDC.
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - main
+      - feat/deployment
+    paths:
+      - 'src/**'
+      - 'scripts/**'
+      - 'prisma/**'
+      - 'Dockerfile-backend'
+      - 'Dockerfile-database'
+      - 'insert_data.sql'
+      - '.github/workflows/deploy-with-sst.yml'
+
+jobs:
+  build-and-deploy-with-sst:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    environment: deployment
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4.1.0
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-2 #london
+
+      - name: Install dependencies and deploy
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: 'npm'
+      - run: npm i
+      - run: npm run deploy:production

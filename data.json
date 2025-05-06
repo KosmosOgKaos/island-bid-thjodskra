@@ -1,0 +1,127 @@
+{
+  "person": {
+    "name": "Jökull Þórðarson",
+    "kennitala": "120389-4569",
+    "address": "Bláfjallagata 12, 105 Reykjavík",
+    "email": "jokull.thordarson@email.is",
+    "telephone": "772-8391"
+  },
+  "submission": {
+    "year": 2024,
+    "status": "Imported",
+    "index": 1
+  },
+  "incomes": [
+    {
+      "type": "Wages",
+      "payer": "Norðurljós Software ehf",
+      "amount": 9360000,
+      "currency": "ISK"
+    },
+    {
+      "type": "Wages",
+      "payer": "Mús & Merki ehf.",
+      "amount": 900000,
+      "currency": "ISK"
+    },
+    {
+      "type": "Benefits",
+      "amount": 120000,
+      "explanation": "Dagpeningar",
+      "currency": "ISK"
+    },
+    {
+      "type": "Wages",
+      "payer": "Norðurljós Software ehf",
+      "amount": 75000,
+      "explanation": "Íþróttastyrkur",
+      "currency": "ISK"
+    }
+  ],
+  "properties": [
+    {
+      "type": "DomesticProperty",
+      "valueName": "Fasteignamat",
+      "value": 52000000,
+      "currency": "ISK",
+      "properties": {
+        "fastanumer": "210-9876",
+        "address": "Bláfjallagata 12"
+      }
+    },
+    {
+      "type": "Vehicle",
+      "valueName": "Kaupverð",
+      "value": 3100000,
+      "currency": "ISK",
+      "properties": {
+        "registrationNumber": "KB-521",
+        "yearOfPurchase": 2021
+      }
+    },
+    {
+      "type": "Vehicle",
+      "valueName": "Kaupverð",
+      "value": 430000,
+      "currency": "ISK",
+      "properties": {
+        "registrationNumber": "JU-329",
+        "yearOfPurchase": 2012
+      }
+    }
+  ],
+  "debts": [
+    {
+      "type": "OwnDomicile",
+      "currency": "ISK",
+      "creditor": "Íslandsbanki hf.",
+      "creditorKennitala": "491008-0160",
+      "loanNumber": "56783900123",
+      "loanStartDate": "2021-06-15T00:00:00Z",
+      "loanDurationYears": 30,
+      "yearPaymentTotal": 2280000,
+      "nominalPaymentTotal": 1360000,
+      "interestPaymentTotal": 920000,
+      "remaining": 28540000,
+      "properties": {
+        "domicileLocation": "Bláfjallagata 12",
+        "yearOfPurchase": 2021
+      }
+    },
+    {
+      "description": "Eftirstöðvar á korti númer: 4469 88XX XXXX 4567",
+      "type": "Other",
+      "currency": "ISK",
+      "remaining": 39200,
+      "nominalPaymentTotal": 217000
+    },
+    {
+      "description": "Aukalán",
+      "type": "Other",
+      "currency": "ISK",
+      "remaining": 86000,
+      "nominalPaymentTotal": 980000
+    },
+    {
+      "description": "0142-26-732645 Varðan",
+      "type": "Other",
+      "currency": "ISK",
+      "remaining": 14500,
+      "nominalPaymentTotal": 62000
+    },
+    {
+      "description": "Kílómetragjald, Skatturinn",
+      "type": "Other",
+      "currency": "ISK",
+      "remaining": 0,
+      "nominalPaymentTotal": 2370
+    },
+    {
+      "description": "Þing- og sveitarsjóðsgjöld, Skatturinn",
+      "type": "Other",
+      "currency": "ISK",
+      "remaining": 224,
+      "nominalPaymentTotal": 0
+    }
+  ]
+}
