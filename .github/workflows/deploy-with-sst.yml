@@ -21,6 +21,7 @@ on:
       - 'Dockerfile-database'
       - 'insert_data.sql'
       - '.github/workflows/deploy-with-sst.yml'
+      - 'sst.config.ts'
 
 jobs:
   build-and-deploy-with-sst:
