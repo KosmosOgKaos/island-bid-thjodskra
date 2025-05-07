@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, NotFoundException } from '@nestjs/common';
 import { NationalRegistryService } from './national-registry.service';
 import { PersonDto } from './dto/person.dto';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -18,7 +18,9 @@ export class NationalRegistryController {
     const person =
       await this.nationalRegistryService.findByKennitala(kennitala);
     if (!person) {
-      return null;
+      throw new NotFoundException(
+        `Person with kennitala ${kennitala} not found`,
+      );
     }
 
     const {
