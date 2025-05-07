@@ -2,5 +2,5 @@ FROM postgres:17.2
 EXPOSE 5432
 VOLUME /var/lib/postgresql/data
 
-COPY prisma/migrations/20250505181821_init/migration.sql /docker-entrypoint-initdb.d/01_migration.sql
+COPY prisma/migrations/20250507094719_init/migration.sql /docker-entrypoint-initdb.d/01_migration.sql
 COPY insert_data.sql /docker-entrypoint-initdb.d/02_insert_data.sql
