@@ -13,6 +13,4 @@ export class NationalRegistryService {
       },
     });
   }
-
-  // Add your service methods here
 }
