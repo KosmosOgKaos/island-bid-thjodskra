@@ -68,6 +68,9 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
+    "coveragePathIgnorePatterns": [
+      "src/config/config.module.ts"
+    ],
     "coverageDirectory": "../coverage",
     "moduleFileExtensions": [
       "js",
