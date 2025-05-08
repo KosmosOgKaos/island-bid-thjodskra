@@ -1,9 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { NationalRegistryService } from './national-registry.service';
 import { PrismaService } from '../prisma/prisma.service';
-import { Person } from '../../generated/prisma'; // Assuming this path is correct
+import { Person } from '../../generated/prisma';
 
-// Mock data for a person
 const mockPerson: Person = {
   id: 1,
   kennitala: '1234567890',
@@ -15,7 +14,6 @@ const mockPerson: Person = {
   updatedAt: new Date(),
 };
 
-// Mock for PrismaService
 const mockPrismaService = {
   person: {
     findUnique: jest.fn(),
@@ -40,7 +38,7 @@ describe('NationalRegistryService', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks(); // Clear mocks after each test
+    jest.clearAllMocks();
   });
 
   it('should be defined', () => {
